@@ -35,18 +35,24 @@
           </ul>
         </div>
       </div>
-      <form method="POST" action="/notes">
-          <div class="col-8">
-            <% if (aux_title==""){%>
-                <input class="note-title"  placeholder="Note Title" maxlength="28" type="text" name="title" id="title">
-                <textarea class="note-textarea" placeholder="Note Text" name="text" id="text"></textarea>
-            <% }else{%>
-                <input class="note-title"  placeholder="Note Title" maxlength="28" type="text" name="title" id="title" value=<%=aux_title%>>
-                <textarea class="note-textarea" placeholder="Note Text" name="text" id="text"  ><%=aux_text%></textarea>
-            <%}%>
-          </div>
-          <input type ="submit" value="post">
-      </form>
+      <% if (aux_title==""){%>
+          <form method="POST" action="/notes">
+              <div class="col-8">
+                  <input class="note-title"  placeholder="Note Title" maxlength="28" type="text" name="title" id="title">
+                  <textarea class="note-textarea" placeholder="Note Text" name="text" id="text"></textarea>
+              </div>
+              <input type ="submit" value="post">
+          </form>
+      <% }else{%>
+          <form method="POST" action="/modify/<%= aux_id%>">
+              <div class="col-8">
+                  <input class="note-title"   maxlength="28" type="text" name="title" id="title" value=<%=aux_title%>>
+                  <textarea class="note-textarea"  name="text" id="text"  ><%=aux_text%></textarea>
+              </div>
+              <input type ="submit" value="Modify">
+          </form>
+      <%}%>
+      
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
